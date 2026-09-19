@@ -48,9 +48,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
       }
 
       if (!window.location.hash) {
-        window.scrollTo(0, 0);
+        // 'instant' verhindert den störenden "Gummiband-Effekt" durch das globale scroll-behavior: smooth
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         // Fallback für besonders aggressive Browser, die das Layout minimal verzögert berechnen
-        setTimeout(() => window.scrollTo(0, 0), 20);
+        setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }), 20);
       }
     </script>
   </body>
