@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalDraftWarning from '../components/LegalDraftWarning.astro';
+import { site } from '../site';
+---
+
+<Base title="Impressum – nyveo" description="Impressum und Anbieterkennzeichnung der nyveo GbR.">
+  <section class="legal">
+    <div class="container">
+      <LegalDraftWarning />
+
+      <h1>Impressum</h1>
+
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <address>
+        {site.legalName}<br />
+        {site.address.street}<br />
+        {site.address.postalCode} {site.address.city}<br />
+        {site.address.country}
+      </address>
+
+      <h2>Vertreten durch die Gesellschafter</h2>
+      <address>
+        {site.partners.map((partner) => <>{partner}<br /></>)}
+      </address>
+
+      <h2>Kontakt</h2>
+      <address>
+        Telefon: <a href={`tel:${site.phoneHref}`}>{site.phone}</a><br />
+        E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+      </address>
+
+      <h2>Umsatzsteuer-Identifikationsnummer</h2>
+      <p>
+        {
+          site.vatId
+            ? `Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: ${site.vatId}`
+            : 'PLATZHALTER: USt-IdNr. gemäß § 27a UStG eintragen, oder diesen Abschnitt entfernen, falls die Kleinunternehmerregelung nach § 19 UStG gilt.'
+        }
+      </p>
+
+      <h2>Redaktionell verantwortlich</h2>
+      <address>
+        {site.partners[0]}<br />
+        {site.address.street}<br />
+        {site.address.postalCode} {site.address.city}
+      </address>
+
+      <h2>Streitschlichtung</h2>
+      <p>
+        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+        <a href="https://ec.europa.eu/consumers/odr/" rel="noopener noreferrer" target="_blank">
+          https://ec.europa.eu/consumers/odr/
+        </a>
+      </p>
+      <p>
+        Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+        Verbraucherschlichtungsstelle teilzunehmen.
+      </p>
+
+      <h2>Haftung für Inhalte</h2>
+      <p>
+        Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach
+        den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter
+        jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
+        überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+      </p>
+
+      <h2>Haftung für Links</h2>
+      <p>
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen
+        Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.
+        Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der
+        Seiten verantwortlich.
+      </p>
+
+      <h2>Urheberrecht</h2>
+      <p>
+        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen
+        dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet.
+      </p>
+    </div>
+  </section>
+</Base>

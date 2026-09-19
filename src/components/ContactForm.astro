@@ -1,0 +1,110 @@
+---
+import { site } from '../site';
+
+/*
+ * The draft's form called preventDefault(), printed a success message and
+ * reset — every enquiry was silently discarded. This posts to a real
+ * endpoint instead.
+ *
+ * Set PUBLIC_FORM_ENDPOINT in .env to whatever the host provides (a Netlify
+ * form action, a Cloudflare Worker, Formspree, ...). If it is unset the form
+ * refuses to claim success and points at the phone number instead, so a lead
+ * is never swallowed.
+ */
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+
+if (!endpoint && import.meta.env.PROD) {
+  console.warn(
+    '[nyveo] PUBLIC_FORM_ENDPOINT is not set — the contact form will show its ' +
+      'phone/e-mail fallback instead of accepting submissions.'
+  );
+}
+---
+
+<form
+  class="contact-form"
+  id="kontaktformular"
+  method="POST"
+  action={endpoint || undefined}
+  data-endpoint={endpoint}
+  novalidate
+>
+  <div class="field">
+    <label for="cf-name">Name</label>
+    <input type="text" id="cf-name" name="name" autocomplete="name" required />
+  </div>
+  <div class="field">
+    <label for="cf-mail">E-Mail</label>
+    <input type="email" id="cf-mail" name="email" autocomplete="email" required />
+  </div>
+  <div class="field">
+    <label for="cf-msg">Nachricht</label>
+    <textarea id="cf-msg" name="nachricht" rows="5" required></textarea>
+  </div>
+
+  <div class="hp-field" aria-hidden="true">
+    <label for="cf-website">Bitte leer lassen</label>
+    <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <button type="submit" class="btn primary">Anfrage senden</button>
+  <p class="form-note" role="status" aria-live="polite"></p>
+
+  <p class="form-fallback">
+    Lieber direkt? <a href={`tel:${site.phoneHref}`}>{site.phone}</a> oder
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+  </p>
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#kontaktformular');
+  if (form) {
+    const note = form.querySelector<HTMLParagraphElement>('.form-note')!;
+    const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const endpoint = form.dataset.endpoint;
+
+    const say = (message: string, state: 'error' | 'success') => {
+      note.textContent = message;
+      note.classList.toggle('is-error', state === 'error');
+      note.classList.toggle('is-success', state === 'success');
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        say('Bitte füllen Sie alle Felder aus.', 'error');
+        form.reportValidity();
+        return;
+      }
+
+      // Honeypot tripped — pretend nothing happened rather than tipping off a bot.
+      if ((form.elements.namedItem('website') as HTMLInputElement)?.value) return;
+
+      if (!endpoint) {
+        say('Formular ist noch nicht konfiguriert. Bitte rufen Sie uns an.', 'error');
+        return;
+      }
+
+      submit.disabled = true;
+      say('Wird gesendet …', 'success');
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        say('Danke — wir melden uns innerhalb von 24 Stunden.', 'success');
+        form.reset();
+      } catch {
+        say('Senden fehlgeschlagen. Bitte rufen Sie uns an.', 'error');
+      } finally {
+        submit.disabled = false;
+      }
+    });
+  }
+</script>

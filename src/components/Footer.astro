@@ -1,0 +1,53 @@
+---
+import { site } from '../site';
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">{site.name}</div>
+        <p class="footer-about">
+          {site.tagline}<br /><br />
+          Moderne Webseiten im Abo für lokale Unternehmen. Von Anfang an sichtbar, rundum betreut.
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Angebot</h4>
+        <ul>
+          <li><a href="/#leistungen">Leistungen</a></li>
+          <li><a href="/#pakete">Angebot</a></li>
+          <li><a href="/#ablauf">Ablauf</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Unternehmen</h4>
+        <ul>
+          <li><a href="/#kontakt">Kontakt</a></li>
+          <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="/impressum">Impressum</a></li>
+          <li><a href="/datenschutz">Datenschutz</a></li>
+          <li><a href="/agb">AGB</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {year} {site.name}. Alle Rechte vorbehalten.</span>
+      <div class="footer-socials">
+        <span>{site.tagline}</span>
+      </div>
+    </div>
+  </div>
+</footer>

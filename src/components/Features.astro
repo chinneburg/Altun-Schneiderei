@@ -1,0 +1,58 @@
+---
+const features = [
+  {
+    icon: '01 — Design',
+    title: 'Individuelles Design',
+    text: 'Modern und zu Ihrem Betrieb passend. Mit Ihren Farben, Fotos und Texten.',
+  },
+  {
+    icon: '02 — Mobil',
+    title: 'Perfekt am Handy',
+    text: '70% Ihrer Besucher kommen vom Smartphone. Ihre Seite funktioniert überall.',
+  },
+  {
+    icon: '03 — Sicherheit',
+    title: 'Hosting & DSGVO',
+    text: 'Sicheres Hosting in Deutschland, SSL und Rechtssicherheit – alles erledigt.',
+  },
+  {
+    icon: '04 — Wartung',
+    title: 'Wartung & Updates',
+    text: 'Wir halten alles aktuell und sicher. Ihre Änderungswünsche sind inklusive.',
+  },
+  {
+    icon: '05 — Sichtbarkeit',
+    title: 'Bei Google gefunden',
+    text: 'Saubere Technik und lokale Optimierung, damit Kunden Sie finden.',
+  },
+  {
+    icon: '06 — Betreuung',
+    title: 'Fester Ansprechpartner',
+    text: 'Kein Ticketsystem, keine Warteschleife. Ein Mensch, der Sie kennt.',
+  },
+];
+---
+
+<section id="leistungen" class="alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Alles inklusive</span>
+      <h2>Ein Preis. Rundum sorglos.</h2>
+      <p class="section-lead">
+        Design, Hosting, Wartung, Support – alles ist in Ihrem Abo enthalten.
+      </p>
+    </div>
+
+    <div class="features">
+      {
+        features.map((feature) => (
+          <div class="feature">
+            <span class="feature-icon">{feature.icon}</span>
+            <h3>{feature.title}</h3>
+            <p>{feature.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
