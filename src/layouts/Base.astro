@@ -41,10 +41,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
     </main>
     <Footer />
     <script>
-      // Browser manchmal merken sich die Scrollposition der vorherigen Seite.
-      // Das hier zwingt die Seite immer ganz oben zu starten, außer es wurde explizit ein Anker (Hash) aufgerufen.
+      // Verhindert, dass der Browser sich die Scrollposition der Unterseiten merkt (History Scroll Restoration).
+      // Dadurch startet die Seite nach einem Klick immer ganz oben, es sei denn, ein Hash wird direkt aufgerufen.
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
       if (!window.location.hash) {
         window.scrollTo(0, 0);
+        // Fallback für besonders aggressive Browser, die das Layout minimal verzögert berechnen
+        setTimeout(() => window.scrollTo(0, 0), 20);
       }
     </script>
   </body>
