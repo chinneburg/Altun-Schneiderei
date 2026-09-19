@@ -45,5 +45,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
       <slot />
     </main>
     <Footer />
+    <script>
+      // Force scroll to top after HTML is parsed, but before paint if possible.
+      // We temporarily disable smooth scrolling on the HTML element to prevent any "bounce" animation.
+      if (!window.location.hash) {
+        const html = document.documentElement;
+        html.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 0);
+        
+        // Ensure it stays at the top even if the browser tries to restore scroll late
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          html.style.scrollBehavior = ''; // Restore CSS smooth scrolling
+        }, 50);
+      }
+    </script>
   </body>
 </html>
