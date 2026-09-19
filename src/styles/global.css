@@ -31,7 +31,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 76px; /* Exact height of the fixed header */
 }
 
 body {
@@ -112,6 +112,13 @@ header.scrolled {
     background: rgba(244, 242, 239, 0.92);
     backdrop-filter: blur(18px);
     border-bottom-color: var(--line);
+}
+
+body.nav-open header.scrolled,
+body.nav-open header[data-subpage="true"] {
+    backdrop-filter: none;
+    background: transparent;
+    border-color: transparent;
 }
 
 .nav-wrap {
@@ -425,7 +432,6 @@ section.dark .step-number {
 .section-header {
     max-width: 1100px;
     margin-bottom: clamp(48px, 6vw, 90px);
-    scroll-margin-top: 100px;
 }
 
 .section-tag {

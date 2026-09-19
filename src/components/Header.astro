@@ -64,19 +64,19 @@ const isHome = Astro.url.pathname === '/';
   // Smooth scroll for anchor links to prevent browser jump/reload issues
   document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      // Only intercept if we are on the homepage
-      if (window.location.pathname === '/') {
+      const targetId = this.getAttribute('href')?.substring(2); // remove '/#'
+      const targetElement = document.getElementById(targetId || '');
+      
+      // If the target element exists on the current page, smooth scroll to it
+      if (targetElement) {
         e.preventDefault();
-        const targetId = this.getAttribute('href')?.substring(2); // remove '/#'
-        const targetElement = document.getElementById(targetId || '');
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-          // Close mobile menu if open
-          if (toggle.getAttribute('aria-expanded') === 'true') {
-            setOpen(false);
-          }
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+        // Close mobile menu if open
+        if (toggle.getAttribute('aria-expanded') === 'true') {
+          setOpen(false);
         }
       }
+      // If it doesn't exist (e.g., we are on a subpage), let the browser navigate normally
     });
   });
 </script>
