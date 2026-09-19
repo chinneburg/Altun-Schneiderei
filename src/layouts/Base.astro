@@ -40,5 +40,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
       <slot />
     </main>
     <Footer />
+    <script>
+      // Browser manchmal merken sich die Scrollposition der vorherigen Seite.
+      // Das hier zwingt die Seite immer ganz oben zu starten, wenn man z.B. auf "Datenschutz" klickt.
+      window.scrollTo(0, 0);
+    </script>
   </body>
 </html>

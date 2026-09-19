@@ -3,43 +3,43 @@ const features = [
   {
     icon: '01 — Design',
     title: 'Individuelles Design',
-    text: 'Modern und zu Ihrem Betrieb passend. Mit Ihren Farben, Fotos und Texten.',
+    text: 'Modern und zu Ihrem Betrieb passend. Mit Ihren Farben, Fotos und&nbsp;Texten.',
   },
   {
     icon: '02 — Mobil',
     title: 'Perfekt am Handy',
-    text: '70% Ihrer Besucher kommen vom Smartphone. Ihre Seite funktioniert überall.',
+    text: '70% Ihrer Besucher kommen vom Smartphone. Ihre Seite funktioniert&nbsp;überall.',
   },
   {
     icon: '03 — Sicherheit',
-    title: 'Hosting & DSGVO',
-    text: 'Sicheres Hosting in Deutschland, SSL und Rechtssicherheit – alles erledigt.',
+    title: 'Betrieb & DSGVO',
+    text: 'Sicherer Betrieb in Deutschland, SSL und Rechtssicherheit – alles&nbsp;erledigt.',
   },
   {
     icon: '04 — Wartung',
     title: 'Wartung & Updates',
-    text: 'Wir halten alles aktuell und sicher. Ihre Änderungswünsche sind inklusive.',
+    text: 'Wir halten alles aktuell und sicher. Ihre Änderungswünsche sind&nbsp;inklusive.',
   },
   {
     icon: '05 — Sichtbarkeit',
     title: 'Bei Google gefunden',
-    text: 'Saubere Technik und lokale Optimierung, damit Kunden Sie finden.',
+    text: 'Saubere Technik und lokale Optimierung, damit Kunden Sie&nbsp;finden.',
   },
   {
     icon: '06 — Betreuung',
     title: 'Fester Ansprechpartner',
-    text: 'Kein Ticketsystem, keine Warteschleife. Ein Mensch, der Sie kennt.',
+    text: 'Kein Ticketsystem, keine Warteschleife. Ein Mensch, der Sie&nbsp;kennt.',
   },
 ];
 ---
 
-<section id="leistungen" class="alt">
+<section class="alt">
   <div class="container">
-    <div class="section-header">
+    <div id="leistungen" class="section-header">
       <span class="section-tag">Alles inklusive</span>
       <h2>Ein Preis. Rundum sorglos.</h2>
       <p class="section-lead">
-        Design, Hosting, Wartung, Support – alles ist in Ihrem Abo enthalten.
+        Design, sicherer Betrieb, Wartung, Support – alles ist in Ihrem Abo&nbsp;enthalten.
       </p>
     </div>
 
@@ -49,7 +49,7 @@ const features = [
           <div class="feature">
             <span class="feature-icon">{feature.icon}</span>
             <h3>{feature.title}</h3>
-            <p>{feature.text}</p>
+            <p set:html={feature.text} />
           </div>
         ))
       }

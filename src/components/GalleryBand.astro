@@ -7,21 +7,26 @@ import gallery04 from '../assets/images/gallery-04.jpg';
 import gallery05 from '../assets/images/gallery-05.jpg';
 import gallery06 from '../assets/images/gallery-06.jpg';
 
-const images = [gallery01, gallery02, gallery03, gallery04, gallery05, gallery06];
+const galleryItems = [
+  { src: gallery01, alt: "Modernes Bürogebäude eines Immobilienmaklers" },
+  { src: gallery02, alt: "Handwerker bei der Arbeit in der Werkstatt" },
+  { src: gallery03, alt: "Besprechungssituation in einer Steuerberater-Kanzlei" },
+  { src: gallery04, alt: "Friseurin in einem hellen, modernen Salon" },
+  { src: gallery05, alt: "Schreibtisch eines Architekten mit Bauplänen" },
+  { src: gallery06, alt: "Gemütliches lokales Café" },
+];
 ---
 
-{/*
-  The six crops are decorative and come from only two source photographs, so
-  each <img> carries an empty alt and the band as a whole is labelled instead.
-  Giving every crop its own alt would make a screen reader announce the same
-  two scenes six times.
-*/}
-<div class="gallery-band" role="img" aria-label="Eindrücke aus Handwerk und lokalen Betrieben">
+<!-- 
+  TODO: Die aktuellen Bilder (gallery-01 bis gallery-06) sind nur Platzhalter. 
+  Bitte durch 6 echte, unterschiedliche Fotos ersetzen, die zu den alt-Texten passen.
+-->
+<div class="gallery-band">
   <div class="gallery-band-inner">
     {
-      images.map((image) => (
+      galleryItems.map((item) => (
         <figure>
-          <Image src={image} alt="" widths={[300, 600]} sizes="(max-width: 1024px) 33vw, 17vw" loading="lazy" />
+          <Image src={item.src} alt={item.alt} widths={[300, 600]} sizes="(max-width: 1024px) 33vw, 17vw" loading="lazy" />
         </figure>
       ))
     }

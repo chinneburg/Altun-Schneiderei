@@ -1,48 +1,41 @@
 ---
 import { site } from '../site';
 
-/*
- * The draft's form called preventDefault(), printed a success message and
- * reset — every enquiry was silently discarded. This posts to a real
- * endpoint instead.
- *
- * Set PUBLIC_FORM_ENDPOINT in .env to whatever the host provides (a Netlify
- * form action, a Cloudflare Worker, Formspree, ...). If it is unset the form
- * refuses to claim success and points at the phone number instead, so a lead
- * is never swallowed.
- */
-const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
-
-if (!endpoint && import.meta.env.PROD) {
-  console.warn(
-    '[nyveo] PUBLIC_FORM_ENDPOINT is not set — the contact form will show its ' +
-      'phone/e-mail fallback instead of accepting submissions.'
-  );
-}
+// Web3Forms Endpoint (der einfachste Weg für statische Seiten)
+const endpoint = 'https://api.web3forms.com/submit';
 ---
 
 <form
   class="contact-form"
   id="kontaktformular"
   method="POST"
-  action={endpoint || undefined}
+  action={endpoint}
   data-endpoint={endpoint}
   novalidate
 >
+  <!-- HIER DEN WEB3FORMS KEY EINTRAGEN (siehe Chat) -->
+  <input type="hidden" name="access_key" value="4e41a4a7-59b3-4f5c-98b7-fc7d7ef4f05a" />
+  
+  <!-- Spam-Schutz (Honeypot) für Web3Forms -->
+  <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
   <div class="field">
-    <label for="cf-name">Name</label>
+    <label for="cf-name">Name *</label>
+    <!-- 'required' macht dies zum Pflichtfeld -->
     <input type="text" id="cf-name" name="name" autocomplete="name" required />
   </div>
   <div class="field">
-    <label for="cf-mail">E-Mail</label>
+    <label for="cf-mail">E-Mail *</label>
+    <!-- 'required' macht dies zum Pflichtfeld -->
     <input type="email" id="cf-mail" name="email" autocomplete="email" required />
   </div>
   <div class="field">
     <label for="cf-msg">Nachricht</label>
-    <textarea id="cf-msg" name="nachricht" rows="5" required></textarea>
+    <!-- Placeholder statt Text, damit es dezent/weniger kontrastreich ist -->
+    <textarea id="cf-msg" name="nachricht" rows="5" placeholder="Ich bin interessiert und freue mich, mit Ihnen in Kontakt zu treten."></textarea>
   </div>
 
-  <div class="hp-field" aria-hidden="true">
+  <div class="hp-field" aria-hidden="true" style="display:none;">
     <label for="cf-website">Bitte leer lassen</label>
     <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" />
   </div>
@@ -50,10 +43,6 @@ if (!endpoint && import.meta.env.PROD) {
   <button type="submit" class="btn primary">Anfrage senden</button>
   <p class="form-note" role="status" aria-live="polite"></p>
 
-  <p class="form-fallback">
-    Lieber direkt? <a href={`tel:${site.phoneHref}`}>{site.phone}</a> oder
-    <a href={`mailto:${site.email}`}>{site.email}</a>
-  </p>
 </form>
 
 <script>
@@ -73,7 +62,7 @@ if (!endpoint && import.meta.env.PROD) {
       event.preventDefault();
 
       if (!form.checkValidity()) {
-        say('Bitte füllen Sie alle Felder aus.', 'error');
+        say('Bitte füllen Sie alle Pflichtfelder aus.', 'error');
         form.reportValidity();
         return;
       }
@@ -81,16 +70,23 @@ if (!endpoint && import.meta.env.PROD) {
       // Honeypot tripped — pretend nothing happened rather than tipping off a bot.
       if ((form.elements.namedItem('website') as HTMLInputElement)?.value) return;
 
-      if (!endpoint) {
-        say('Formular ist noch nicht konfiguriert. Bitte rufen Sie uns an.', 'error');
+      const accessKeyInput = form.elements.namedItem('access_key') as HTMLInputElement;
+      if (!accessKeyInput || !accessKeyInput.value) {
+        say('Das Formular ist noch nicht vollständig verknüpft (Key fehlt). Bitte schreiben Sie uns eine direkte E-Mail.', 'error');
         return;
+      }
+
+      // Wenn die Nachricht leer gelassen wurde, den Placeholder-Text als echten Wert setzen
+      const msgInput = form.elements.namedItem('nachricht') as HTMLTextAreaElement;
+      if (msgInput && msgInput.value.trim() === '') {
+        msgInput.value = 'Ich bin interessiert und freue mich, mit Ihnen in Kontakt zu treten.';
       }
 
       submit.disabled = true;
       say('Wird gesendet …', 'success');
 
       try {
-        const response = await fetch(endpoint, {
+        const response = await fetch(endpoint!, {
           method: 'POST',
           headers: { Accept: 'application/json' },
           body: new FormData(form),
@@ -98,10 +94,10 @@ if (!endpoint && import.meta.env.PROD) {
 
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-        say('Danke — wir melden uns innerhalb von 24 Stunden.', 'success');
+        say('Danke — wir melden uns in Kürze bei Ihnen.', 'success');
         form.reset();
       } catch {
-        say('Senden fehlgeschlagen. Bitte rufen Sie uns an.', 'error');
+        say('Senden fehlgeschlagen. Bitte schreiben Sie uns direkt eine E-Mail.', 'error');
       } finally {
         submit.disabled = false;
       }

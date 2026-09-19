@@ -1,14 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
-import LegalDraftWarning from '../components/LegalDraftWarning.astro';
 import { site } from '../site';
 ---
 
 <Base title="Impressum – nyveo" description="Impressum und Anbieterkennzeichnung der nyveo GbR.">
   <section class="legal">
     <div class="container">
-      <LegalDraftWarning />
-
       <h1>Impressum</h1>
 
       <h2>Angaben gemäß § 5 DDG</h2>
@@ -26,25 +23,20 @@ import { site } from '../site';
 
       <h2>Kontakt</h2>
       <address>
-        Telefon: <a href={`tel:${site.phoneHref}`}>{site.phone}</a><br />
+        {site.phone && <>Telefon: <a href={`tel:${site.phoneHref}`}>{site.phone}</a><br /></>}
         E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
       </address>
+      
+      {site.vatId && (
+        <>
+          <h2>Umsatzsteuer-Identifikationsnummer</h2>
+          <p>
+            Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {site.vatId}
+          </p>
+        </>
+      )}
 
-      <h2>Umsatzsteuer-Identifikationsnummer</h2>
-      <p>
-        {
-          site.vatId
-            ? `Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: ${site.vatId}`
-            : 'PLATZHALTER: USt-IdNr. gemäß § 27a UStG eintragen, oder diesen Abschnitt entfernen, falls die Kleinunternehmerregelung nach § 19 UStG gilt.'
-        }
-      </p>
 
-      <h2>Redaktionell verantwortlich</h2>
-      <address>
-        {site.partners[0]}<br />
-        {site.address.street}<br />
-        {site.address.postalCode} {site.address.city}
-      </address>
 
       <h2>Streitschlichtung</h2>
       <p>

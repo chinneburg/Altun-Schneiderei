@@ -1,8 +1,9 @@
 ---
 import { nav, site } from '../site';
+const isHome = Astro.url.pathname === '/';
 ---
 
-<header>
+<header data-subpage={!isHome ? "true" : undefined}>
   <div class="container">
     <div class="nav-wrap">
       <a class="logo" href="/">{site.name}</a>
@@ -20,9 +21,6 @@ import { nav, site } from '../site';
       <nav id="hauptnavigation" aria-label="Hauptnavigation">
         <ul>
           {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
-          <li class="nav-panel-cta">
-            <a href="/#kontakt" class="btn primary">Beratung anfragen</a>
-          </li>
         </ul>
       </nav>
 
@@ -61,5 +59,24 @@ import { nav, site } from '../site';
       setOpen(false);
       toggle.focus();
     }
+  });
+
+  // Smooth scroll for anchor links to prevent browser jump/reload issues
+  document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      // Only intercept if we are on the homepage
+      if (window.location.pathname === '/') {
+        e.preventDefault();
+        const targetId = this.getAttribute('href')?.substring(2); // remove '/#'
+        const targetElement = document.getElementById(targetId || '');
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          // Close mobile menu if open
+          if (toggle.getAttribute('aria-expanded') === 'true') {
+            setOpen(false);
+          }
+        }
+      }
+    });
   });
 </script>

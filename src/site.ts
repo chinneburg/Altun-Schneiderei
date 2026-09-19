@@ -10,33 +10,38 @@
  */
 export const site = {
   name: 'nyveo',
-  legalName: 'nyveo GbR', // PLACEHOLDER: confirm exact registered name
+  legalName: 'Hinneburg & Oestmann GbR',
   tagline: 'Ich sehe Neues.',
   description:
     'Moderne Webseiten im Abo für lokale Unternehmen. Design, Hosting, Wartung, Support. Von Anfang an sichtbar.',
   url: 'https://nyveo.de',
 
-  phone: '0157 388 344 37',
-  phoneHref: '+4915738834437',
-  email: 'kontakt@nyveo.de', // PLACEHOLDER: confirm public contact address
+  phone: '', // Handynummer auf Wunsch vorerst entfernt
+  phoneHref: '',
+  email: 'info@nyveo.de',
 
-  // PLACEHOLDER: required by § 5 DDG (formerly § 5 TMG).
+  // Required by § 5 DDG (formerly § 5 TMG).
   address: {
-    street: 'Musterstraße 1',
-    postalCode: '00000',
-    city: 'Musterstadt',
+    street: 'Gärtnerstraße 26a',
+    postalCode: '20253',
+    city: 'Hamburg',
     country: 'Deutschland',
   },
 
-  // PLACEHOLDER: both partners of a GbR must be named in the Impressum.
-  partners: ['Vorname Nachname', 'Vorname Nachname'],
+  // Both partners of a GbR must be named in the Impressum.
+  partners: ['Christian Hinneburg', 'Niels Oestmann'],
 
-  vatId: '', // PLACEHOLDER: USt-IdNr. per § 27a UStG, if one has been issued.
+  vatId: '', // Noch keine USt-IdNr vorhanden
+
+  socials: {
+    instagram: 'https://instagram.com/', // PLACEHOLDER
+    linkedin: 'https://linkedin.com/', // PLACEHOLDER
+  }
 } as const;
 
 export const nav = [
+  { label: 'Warum nyveo?', href: '/#warum-nyveo' },
   { label: 'Leistungen', href: '/#leistungen' },
-  { label: 'Angebot', href: '/#pakete' },
   { label: 'Ablauf', href: '/#ablauf' },
-  { label: 'Kontakt', href: '/#kontakt' },
+  { label: 'Angebot & Kontakt', href: '/#kontakt' },
 ] as const;

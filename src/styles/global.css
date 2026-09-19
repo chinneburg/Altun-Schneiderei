@@ -31,6 +31,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -162,7 +163,9 @@ nav a:hover::after {
 }
 
 header.scrolled .logo,
-header.scrolled nav a {
+header.scrolled nav a,
+header[data-subpage="true"] .logo,
+header[data-subpage="true"] nav a {
     color: var(--black);
 }
 
@@ -190,7 +193,8 @@ header.scrolled nav a {
     transition: transform 0.3s ease, opacity 0.2s ease, background 0.4s ease;
 }
 
-header.scrolled .nav-toggle span {
+header.scrolled .nav-toggle span,
+header[data-subpage="true"] .nav-toggle span {
     background: var(--black);
 }
 
@@ -215,6 +219,10 @@ body.nav-open {
     overflow: hidden;
 }
 
+body.nav-open header .logo {
+    color: var(--white) !important;
+}
+
 .cta-btn {
     background: var(--white);
     color: var(--black);
@@ -234,13 +242,15 @@ body.nav-open {
     color: var(--white);
 }
 
-header.scrolled .cta-btn {
+header.scrolled .cta-btn,
+header[data-subpage="true"] .cta-btn {
     background: var(--black);
     color: var(--white);
     border-color: var(--black);
 }
 
-header.scrolled .cta-btn:hover {
+header.scrolled .cta-btn:hover,
+header[data-subpage="true"] .cta-btn:hover {
     background: transparent;
     color: var(--black);
 }
@@ -285,7 +295,7 @@ header.scrolled .cta-btn:hover {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-end !important;
     position: relative;
     overflow: hidden;
 }
@@ -381,7 +391,8 @@ header.scrolled .cta-btn:hover {
 
 /* ---------- Sections ---------- */
 section {
-    padding: clamp(80px, 11vw, 160px) 0;
+    padding: clamp(60px, 8vw, 140px) 0;
+    position: relative;
 }
 
 section.alt {
@@ -414,6 +425,7 @@ section.dark .step-number {
 .section-header {
     max-width: 1100px;
     margin-bottom: clamp(48px, 6vw, 90px);
+    scroll-margin-top: 100px;
 }
 
 .section-tag {
@@ -662,14 +674,21 @@ section.dark .step-number {
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: var(--black);
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--line);
-    padding: 0.6rem 0;
-    transition: border-color 0.25s ease;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    color: var(--black);
+    border-radius: 0;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--grey-300);
+    opacity: 1; /* Firefox reset */
 }
 
 .contact-form textarea {
@@ -827,11 +846,15 @@ footer {
 .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: clamp(32px, 4vw, 64px);
+    gap: clamp(32px, 5vw, 64px);
     padding-bottom: clamp(48px, 6vw, 90px);
 }
 
-/* Was inline style attributes on the footer brand block in the draft. */
+.footer-brand-col {
+    padding-right: 2rem;
+    max-width: 450px;
+}
+
 .footer-brand {
     font-size: 1.35rem;
     font-weight: 700;
@@ -854,40 +877,47 @@ footer {
     letter-spacing: 0.2em;
     color: rgba(255, 255, 255, 0.5);
     margin-bottom: 1.75rem;
+    text-transform: uppercase;
 }
 
 .footer-section ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: 1rem;
 }
 
-.footer-section a {
+.footer-section a, .address-li {
     font-size: 0.92rem;
     color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: color 0.25s ease;
+}
+
+.footer-section a svg, .address-li svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    opacity: 0.7;
 }
 
 .footer-section a:hover {
-    opacity: 0.55;
+    color: var(--white);
 }
 
 .footer-bottom {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
     padding-top: 32px;
     border-top: 1px solid var(--line-light);
     font-size: 0.68rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.45);
-}
-
-.footer-socials {
-    display: flex;
-    gap: 2rem;
 }
 
 /* ---------- Legal pages ---------- */
@@ -966,9 +996,13 @@ footer {
     .compare,
     .features,
     .offer-grid,
-    .steps,
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
     .footer-grid {
         grid-template-columns: 1fr;
+        gap: 3rem;
     }
 
     .feature,
@@ -1029,8 +1063,10 @@ footer {
         text-align: center;
     }
 
+    /* Force links to be white on the dark mobile menu, even if header is scrolled/subpage */
     nav a,
-    header.scrolled nav a {
+    header.scrolled nav a,
+    header[data-subpage="true"] nav a {
         color: var(--white);
         font-size: 1rem;
     }

@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import LegalDraftWarning from '../components/LegalDraftWarning.astro';
 import { site } from '../site';
 ---
 
@@ -10,8 +9,6 @@ import { site } from '../site';
 >
   <section class="legal">
     <div class="container">
-      <LegalDraftWarning />
-
       <h1>Datenschutz&shy;erklärung</h1>
 
       <h2>1. Verantwortlicher</h2>
@@ -21,14 +18,23 @@ import { site } from '../site';
         {site.address.street}<br />
         {site.address.postalCode} {site.address.city}<br />
         E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a><br />
-        Telefon: <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+        {site.phone && <>Telefon: <a href={`tel:${site.phoneHref}`}>{site.phone}</a></>}
       </address>
 
       <h2>2. Hosting</h2>
       <p>
-        PLATZHALTER: Hier den eingesetzten Hoster nennen (Name, Anschrift) und angeben, ob ein
-        Auftragsverarbeitungsvertrag nach Art. 28 DSGVO besteht. Rechtsgrundlage ist in der Regel
-        Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren Bereitstellung).
+        Wir hosten unsere Website bei einem externen Dienstleister (Hoster). Die personenbezogenen Daten, 
+        die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. 
+        Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, 
+        Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten handeln, die über eine 
+        Website generiert werden.
+      </p>
+      <p>
+        Der Einsatz des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen 
+        und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen 
+        und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter 
+        (Art. 6 Abs. 1 lit. f DSGVO). Unser Hoster wird Ihre Daten nur insoweit verarbeiten, wie dies 
+        zur Erfüllung seiner Leistungspflichten erforderlich ist.
       </p>
 
       <h2>3. Server-Logfiles</h2>
@@ -41,40 +47,39 @@ import { site } from '../site';
       <p>
         Diese Daten werden nicht mit anderen Datenquellen zusammengeführt. Die Verarbeitung erfolgt
         auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO zum Zweck des sicheren und stabilen Betriebs
-        der Website. PLATZHALTER: Speicherdauer ergänzen.
+        der Website. Die Server-Logfiles werden für maximal 7 Tage gespeichert und anschließend automatisch gelöscht.
       </p>
 
       <h2>4. Kontaktformular</h2>
       <p>
-        Wenn Sie uns über das Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem
-        Formular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der
-        Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.
+        Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular 
+        inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall 
+        von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
       </p>
       <p>
-        Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage
-        mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher
-        Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem
-        berechtigten Interesse an der Bearbeitung der an uns gerichteten Anfragen
-        (Art. 6 Abs. 1 lit. f DSGVO).
+        Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage 
+        mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. 
+        In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung 
+        der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).
       </p>
       <p>
-        PLATZHALTER: Den tatsächlich eingesetzten Formulardienst benennen (z. B. Netlify Forms,
-        Cloudflare, Formspree), inklusive Sitz des Anbieters, Empfänger der Daten und ggf.
-        Drittlandtransfer nach Art. 44 ff. DSGVO.
+        Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, 
+        Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach 
+        abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – 
+        bleiben unberührt.
       </p>
 
       <h2>5. Schriftarten</h2>
       <p>
         Diese Website bindet Schriftarten lokal vom eigenen Server ein. Es wird keine Verbindung zu
         Servern Dritter — insbesondere nicht zu Google Fonts — aufgebaut, und Ihre IP-Adresse wird
-        dabei nicht an Dritte übermittelt.
+        dabei nicht an Dritte übermittelt. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar.
       </p>
 
-      <h2>6. Cookies</h2>
+      <h2>6. Cookies & Tracking</h2>
       <p>
-        Diese Website verwendet derzeit keine Cookies und kein Tracking. PLATZHALTER: Sobald
-        Analyse-, Karten- oder Buchungsdienste eingebunden werden, sind diese hier zu ergänzen und
-        gegebenenfalls über ein Consent-Banner einzuholen.
+        Diese Website verwendet derzeit keine einwilligungspflichtigen Cookies und keine Analyse- oder Tracking-Tools. 
+        Ihre Nutzung dieser Website wird nicht durch externe Dienste (wie z. B. Google Analytics) ausgewertet.
       </p>
 
       <h2>7. Ihre Rechte</h2>
@@ -89,8 +94,9 @@ import { site } from '../site';
         <li>Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
       </ul>
       <p>
-        Ihnen steht zudem ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu
-        (Art. 77 DSGVO). PLATZHALTER: zuständige Landesbehörde nennen.
+        Ihnen steht zudem ein Beschwerderecht bei einer zuständigen Datenschutz-Aufsichtsbehörde zu
+        (Art. 77 DSGVO). Für unser Unternehmen ist in der Regel der Hamburgische Beauftragte für 
+        Datenschutz und Informationsfreiheit zuständig.
       </p>
 
       <h2>8. SSL-/TLS-Verschlüsselung</h2>
