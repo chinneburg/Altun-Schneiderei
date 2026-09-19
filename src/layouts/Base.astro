@@ -18,6 +18,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -40,19 +45,5 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
       <slot />
     </main>
     <Footer />
-    <script>
-      // Verhindert, dass der Browser sich die Scrollposition der Unterseiten merkt (History Scroll Restoration).
-      // Dadurch startet die Seite nach einem Klick immer ganz oben, es sei denn, ein Hash wird direkt aufgerufen.
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
-
-      if (!window.location.hash) {
-        // 'instant' verhindert den störenden "Gummiband-Effekt" durch das globale scroll-behavior: smooth
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-        // Fallback für besonders aggressive Browser, die das Layout minimal verzögert berechnen
-        setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }), 20);
-      }
-    </script>
   </body>
 </html>
