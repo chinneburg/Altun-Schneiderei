@@ -4,79 +4,13 @@ const isHome = Astro.url.pathname === '/';
 ---
 
 <header data-subpage={!isHome ? "true" : undefined}>
-  <div class="container">
-    <div class="nav-wrap">
-      <a class="logo" href="/">{site.name}</a>
+  <div class="nav-wrap">
+    <a class="logo" href="/">{site.name}</a>
 
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-label="Menü öffnen"
-        aria-expanded="false"
-        aria-controls="hauptnavigation"
-      >
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav id="hauptnavigation" aria-label="Hauptnavigation">
-        <ul>
-          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
-        </ul>
-      </nav>
-
-      <a class="cta-btn" href="/#kontakt">Kontakt</a>
-    </div>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
   </div>
 </header>
-
-<script>
-  const header = document.querySelector('header')!;
-  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle')!;
-  const nav = document.querySelector<HTMLElement>('#hauptnavigation')!;
-
-  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 60);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  const setOpen = (open: boolean) => {
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
-    nav.dataset.open = String(open);
-    document.body.classList.toggle('nav-open', open);
-  };
-
-  toggle.addEventListener('click', () => {
-    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-  });
-
-  // Close after following an anchor, and on Escape.
-  nav.addEventListener('click', (event) => {
-    if ((event.target as HTMLElement).closest('a')) setOpen(false);
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-      setOpen(false);
-      toggle.focus();
-    }
-  });
-
-  // Smooth scroll for anchor links to prevent browser jump/reload issues
-  document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href')?.substring(2); // remove '/#'
-      const targetElement = document.getElementById(targetId || '');
-      
-      // If the target element exists on the current page, smooth scroll to it
-      if (targetElement) {
-        e.preventDefault();
-        targetElement.scrollIntoView({ behavior: 'smooth' });
-        // Close mobile menu if open
-        if (toggle.getAttribute('aria-expanded') === 'true') {
-          setOpen(false);
-        }
-      }
-      // If it doesn't exist (e.g., we are on a subpage), let the browser navigate normally
-    });
-  });
-</script>

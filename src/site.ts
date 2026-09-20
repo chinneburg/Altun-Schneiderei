@@ -33,7 +33,5 @@ export const site = {
 
 export const nav = [
   { label: 'Leistungen', href: '/#leistungen' },
-  { label: 'Vorteile', href: '/#vorteile' },
-  { label: 'Galerie', href: '/#galerie' },
-  { label: 'Kontakt & Anfahrt', href: '/#kontakt' },
+  { label: 'Kontakt', href: '/#kontakt' },
 ] as const;
