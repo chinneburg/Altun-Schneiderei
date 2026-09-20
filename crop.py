@@ -51,4 +51,3 @@ except ImportError:
     print("Pillow not installed. Installing...")
     os.system("pip install pillow")
     print("Run script again.")
-

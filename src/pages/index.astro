@@ -1,244 +1,276 @@
 ---
 import Base from '../layouts/Base.astro';
+import { site } from '../site';
 import { Image } from 'astro:assets';
 import heroImage from '../assets/images/storefront.jpg';
 import detail1 from '../assets/images/interior_machine.jpg';
 import detail2 from '../assets/images/threads.jpg';
 ---
 
-<Base title="Änderungsschneiderei Altun – Düsseldorf">
-    <!-- Editorial Hero -->
-    <section class="hero-editorial">
-      <Image 
-        src={heroImage} 
-        alt="Änderungsschneiderei Altun Außenansicht" 
-        class="hero-img"
-        loading="eager"
-      />
-      <div class="hero-overlay">
-        <h1 class="text-editorial-headline text-white">Präzision & Handwerk</h1>
-        <p class="text-uppercase text-white">Düsseldorf Oberkassel</p>
+<Base title="Änderungsschneiderei Altun – Düsseldorf-Oberkassel">
+  <main class="tailor-layout">
+    <header class="hero-section">
+      <div class="hero-image">
+        <Image src={heroImage} alt="Änderungsschneiderei Altun Außenansicht" widths={[640, 1024, 1920]} sizes="100vw" loading="eager" />
       </div>
-    </section>
-
-    <!-- Intro Text -->
-    <section class="section-padding intro-section">
-      <div class="intro-content">
-        <p class="text-editorial-body">
-          Willkommen in der Änderungsschneiderei Altun. Wir sind ein lokales Handwerksunternehmen, das sich der perfekten Passform verschrieben hat. Mit Sorgfalt, Erfahrung und Leidenschaft widmen wir uns jedem Kleidungsstück.
-        </p>
+      <div class="hero-content">
+        <h1>Willkommen bei Altun</h1>
+        <p>Ihre Änderungsschneiderei in Düsseldorf-Oberkassel.</p>
+        <a href="#kontakt" class="btn">Besuchen Sie uns</a>
       </div>
-    </section>
+    </header>
 
-    <!-- Services Grid (PNS Style Grid) -->
-    <section id="leistungen" class="services-wrapper">
-      <div class="grid-lines services-grid">
-        
-        <div class="service-card">
-          <div class="service-image-wrapper">
-            <Image src={detail1} alt="Schneiderei Arbeitsplatz" class="service-img" />
-          </div>
-          <div class="service-info">
-            <h2 class="text-uppercase">Maßgeschneiderte Qualität</h2>
-            <p class="text-editorial-body">
-              Von der einfachen Hosenkürzung bis zur komplexen Sakkoanpassung – wir garantieren höchste handwerkliche Qualität und eine Passform, die sich sehen lassen kann.
+    <section id="leistungen" class="info-section">
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-text">
+            <h2>Wir machen's passend...</h2>
+            <p>
+              Wir legen höchsten Wert auf handwerkliche Qualität, Präzision und Kundenzufriedenheit. Ob Sie ein Kleidungsstück anpassen, reparieren oder umarbeiten lassen möchten – wir stehen Ihnen mit unserer langjährigen Expertise zur Seite.
             </p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-image-wrapper">
-            <Image src={detail2} alt="Garnrollen" class="service-img" />
-          </div>
-          <div class="service-info">
-            <h2 class="text-uppercase">Unsere Leistungen</h2>
-            <ul class="service-list text-editorial-body">
-              <li>Anpassung von Textilien</li>
-              <li>Leder- & Pelzbearbeitung</li>
-              <li>Reparaturen (inkl. Schuhe)</li>
-              <li>Dekorationen</li>
-              <li>Schnelle Eilaufträge</li>
+            <ul class="services-list">
+              <li><strong>Textilien</strong></li>
+              <li><strong>Leder</strong></li>
+              <li><strong>Pelze</strong></li>
+              <li><strong>Dekorationen</strong></li>
             </ul>
           </div>
+          <div class="info-images">
+             <Image src={detail1} alt="Schneiderei Arbeitsplatz mit Nähmaschine" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 50vw" />
+             <Image src={detail2} alt="Garnrollen in verschiedenen Farben" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 50vw" />
+          </div>
         </div>
-
       </div>
     </section>
 
-    <!-- Contact Info -->
-    <section id="kontakt" class="section-padding contact-editorial">
-      <div class="contact-grid">
-        <div class="contact-block">
-          <h3 class="text-uppercase mb-1">Besuchen Sie uns</h3>
-          <p class="text-editorial-body">
-            Änderungsschneiderei Altun<br />
-            Belsenstraße 25<br />
-            40545 Düsseldorf
-          </p>
-        </div>
+    <section id="kontakt" class="contact-section">
+      <div class="container">
+        <h2>Kommen Sie direkt vorbei</h2>
+        <p class="contact-subtitle">Wir beraten Sie gerne unverbindlich vor Ort.</p>
         
-        <div class="contact-block">
-          <h3 class="text-uppercase mb-1">Kontakt</h3>
-          <p class="text-editorial-body">
-            Telefon: <a href="tel:021146841229" class="hover-underline">0211 46841229</a>
-          </p>
-        </div>
-
-        <div class="contact-block">
-          <h3 class="text-uppercase mb-1">Öffnungszeiten</h3>
-          <p class="text-editorial-body">
-            Mo – Fr: 09:00 – 18:30<br />
-            Sa: 09:00 – 14:00<br />
-            So: Geschlossen
-          </p>
+        <div class="contact-card">
+          <div class="contact-info">
+            <h3>Öffnungszeiten</h3>
+            <p>Montag – Freitag<br/><strong>09:00 – 18:30 Uhr</strong></p>
+            <p>Samstag<br/><strong>09:00 – 14:00 Uhr</strong></p>
+          </div>
+          <div class="contact-info">
+            <h3>Kontakt & Anfahrt</h3>
+            <p>Änderungsschneiderei Altun</p>
+            <p>Belsenstraße 25<br/>40545 Düsseldorf</p>
+            <p class="phone">Telefon: <a href="tel:021146841229">0211 46841229</a></p>
+          </div>
         </div>
       </div>
     </section>
+  </main>
 </Base>
 
 <style>
-  /* Hero */
-  .hero-editorial {
+  .tailor-layout {
+    font-family: var(--font-sans);
+    color: var(--text-main);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
     position: relative;
     height: 80vh;
-    min-height: 600px;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
+    min-height: 500px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.25);
     text-align: center;
-    padding: 2rem;
+    color: white;
   }
 
-  .text-white {
-    color: #ffffff;
-  }
-
-  .hero-overlay h1 {
-    margin-bottom: 1rem;
-  }
-
-  /* Intro */
-  .intro-section {
-    display: flex;
-    justify-content: center;
-    background-color: var(--color-white);
-  }
-
-  .intro-content {
-    max-width: 800px;
-    text-align: center;
-  }
-
-  /* Services Grid */
-  .services-wrapper {
-    background-color: var(--color-white);
-    padding-bottom: 4rem;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-    max-width: 1600px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 1024px) {
-    .services-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  .service-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .service-image-wrapper {
-    position: relative;
-    padding-top: 75%; /* 4:3 aspect ratio */
-    overflow: hidden;
-  }
-
-  .service-img {
+  .hero-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: -1;
+  }
+  
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 30, 0.6); /* Dark overlay */
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
-  .service-info {
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-grow: 1;
+  .hero-content {
+    max-width: 800px;
+    padding: 2rem;
   }
 
-  .service-info h2 {
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     margin-bottom: 1.5rem;
-    color: var(--color-black);
   }
 
-  .service-list {
+  .hero-content p {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent); /* Red accent */
+    color: #fff;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.3s;
+  }
+
+  .btn:hover {
+    filter: brightness(0.9);
+  }
+
+  /* Info Section */
+  .info-section {
+    padding: 6rem 0;
+    background: #f9f8f6;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .info-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .info-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+  }
+
+  .info-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    color: #555;
+  }
+
+  .services-list {
     list-style: none;
     padding: 0;
   }
 
-  .service-list li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--color-border);
+  .services-list li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    color: #444;
+  }
+
+  .services-list li::before {
+    content: '✂';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .info-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .info-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  /* Contact Section */
+  .contact-section {
+    padding: 6rem 0;
+    background: #fff;
+    text-align: center;
+  }
+
+  .contact-section h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
   }
   
-  .service-list li:last-child {
-    border-bottom: none;
+  .contact-subtitle {
+    color: #666;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
   }
 
-  /* Contact */
-  .contact-editorial {
-    background-color: var(--color-gray);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .contact-grid {
+  .contact-card {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
-    max-width: 1200px;
+    gap: 2rem;
+    background: #f9f8f6;
+    padding: 3rem;
+    border-radius: 8px;
+    max-width: 800px;
     margin: 0 auto;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
   }
 
-  @media (min-width: 768px) {
-    .contact-grid {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+  @media (min-width: 600px) {
+    .contact-card {
+      grid-template-columns: 1fr 1fr;
     }
   }
 
-  .mb-1 {
+  .contact-info h3 {
+    font-size: 1.3rem;
     margin-bottom: 1rem;
-    display: block;
-    color: var(--color-black);
+    color: var(--accent);
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 0.5rem;
   }
 
-  .hover-underline:hover {
-    text-decoration: underline;
+  .contact-info p {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+    color: #444;
+  }
+  
+  .phone a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+  }
+  
+  .phone a:hover {
+    color: var(--accent);
   }
 </style>
