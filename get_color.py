@@ -18,3 +18,4 @@ dominant_rgb = colors[0][1]
 
 hex_color = '#%02x%02x%02x' % dominant_rgb
 print("DOMINANT:", hex_color)
+
