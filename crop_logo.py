@@ -8,3 +8,4 @@ w, h = img.size
 box = (int(w*0.1), int(h*0.15), int(w*0.9), int(h*0.5))
 logo = img.crop(box)
 logo.save('src/assets/images/logo.jpg')
+
