@@ -2,20 +2,20 @@
 import Base from '../layouts/Base.astro';
 import { site } from '../site';
 import { Image } from 'astro:assets';
-import heroImage from '../assets/images/hero.jpg';
-import detail1 from '../assets/images/detail1.jpg';
-import detail2 from '../assets/images/detail2.jpg';
+import heroImage from '../assets/images/storefront.jpg';
+import detail1 from '../assets/images/interior_machine.jpg';
+import detail2 from '../assets/images/threads.jpg';
 ---
 
 <Base title="Änderungsschneiderei Altun – Düsseldorf-Oberkassel">
   <main class="tailor-layout">
     <header class="hero-section">
       <div class="hero-image">
-        <Image src={heroImage} alt="Änderungsschneiderei Altun Innenansicht" widths={[640, 1024, 1920]} sizes="100vw" loading="eager" />
+        <Image src={heroImage} alt="Änderungsschneiderei Altun Außenansicht" widths={[640, 1024, 1920]} sizes="100vw" loading="eager" />
       </div>
       <div class="hero-content">
-        <h1>Handwerk aus<br/>Leidenschaft</h1>
-        <p>Ihre zuverlässige Änderungsschneiderei in Düsseldorf-Oberkassel.</p>
+        <h1>Willkommen bei Altun</h1>
+        <p>Ihre Änderungsschneiderei in Düsseldorf-Oberkassel.</p>
         <a href="#kontakt" class="btn">Besuchen Sie uns</a>
       </div>
     </header>
@@ -24,21 +24,20 @@ import detail2 from '../assets/images/detail2.jpg';
       <div class="container">
         <div class="info-grid">
           <div class="info-text">
-            <h2>Maßgeschneiderte Qualität für Ihre Kleidung</h2>
+            <h2>Wir machen's passend...</h2>
             <p>
-              Willkommen bei der Änderungsschneiderei Altun. Wir legen höchsten Wert auf handwerkliche Qualität, Präzision und Kundenzufriedenheit. Ob Sie ein Kleidungsstück anpassen, reparieren oder umarbeiten lassen möchten – wir stehen Ihnen mit unserer langjährigen Expertise zur Seite.
+              Wir legen höchsten Wert auf handwerkliche Qualität, Präzision und Kundenzufriedenheit. Ob Sie ein Kleidungsstück anpassen, reparieren oder umarbeiten lassen möchten – wir stehen Ihnen mit unserer langjährigen Expertise zur Seite.
             </p>
             <ul class="services-list">
-              <li><strong>Anpassung</strong> von Damen- und Herrenbekleidung</li>
-              <li><strong>Kürzen & Engermachen</strong> (Hosen, Jeans, Kleider)</li>
-              <li><strong>Perfekter Sitz</strong> für Sakkos und Hemden</li>
-              <li><strong>Reparaturen</strong> (auch für Schuhe & Sneaker)</li>
-              <li><strong>Eilaufträge</strong> für schnelle Erledigung</li>
+              <li><strong>Textilien</strong></li>
+              <li><strong>Leder</strong></li>
+              <li><strong>Pelze</strong></li>
+              <li><strong>Dekorationen</strong></li>
             </ul>
           </div>
           <div class="info-images">
-             <Image src={detail1} alt="Maßnehmen an einem Anzug" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 50vw" />
-             <Image src={detail2} alt="Zuschneiden von Stoff" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 50vw" />
+             <Image src={detail1} alt="Schneiderei Arbeitsplatz mit Nähmaschine" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 50vw" />
+             <Image src={detail2} alt="Garnrollen in verschiedenen Farben" widths={[400, 800]} sizes="(max-width: 768px) 100vw, 50vw" />
           </div>
         </div>
       </div>
