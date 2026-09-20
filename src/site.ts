@@ -1,47 +1,39 @@
 /**
  * Single source of truth for company and contact details.
- *
- * The legal pages, the footer and the structured data all read from here, so
- * these values are only ever written down once.
- *
- * TODO: fields marked PLACEHOLDER must be filled with the real GbR details
- * before the site goes live — an Impressum with wrong or missing data is the
- * classic Abmahnung trigger.
  */
 export const site = {
-  name: 'nyveo',
-  legalName: 'Hinneburg & Oestmann GbR',
-  tagline: 'Ich sehe Neues.',
+  name: 'Altun',
+  legalName: 'Änderungsschneiderei Altun',
+  tagline: 'Maßgeschneiderte Qualität für Ihre Kleidung',
   description:
-    'Moderne Webseiten im Abo für lokale Unternehmen. Design, Hosting, Wartung, Support. Von Anfang an sichtbar.',
-  url: 'https://nyveo.de',
+    'Ihre zuverlässige Änderungsschneiderei in Düsseldorf-Oberkassel. Anpassungen, Reparaturen und Maßanfertigungen von Damen- und Herrenbekleidung.',
+  url: 'https://altun-schneiderei.de', // Platzhalter URL
 
-  phone: '', // Handynummer auf Wunsch vorerst entfernt
-  phoneHref: '',
-  email: 'info@nyveo.de',
+  phone: '0211 46841229',
+  phoneHref: 'tel:021146841229',
+  email: 'info@altun-schneiderei.de',
 
   // Required by § 5 DDG (formerly § 5 TMG).
   address: {
-    street: 'Gärtnerstraße 26a',
-    postalCode: '20253',
-    city: 'Hamburg',
+    street: 'Belsenstraße 25',
+    postalCode: '40545',
+    city: 'Düsseldorf',
     country: 'Deutschland',
   },
 
-  // Both partners of a GbR must be named in the Impressum.
-  partners: ['Christian Hinneburg', 'Niels Oestmann'],
+  partners: ['Herr Altun'], // Inhaber
 
-  vatId: '', // Noch keine USt-IdNr vorhanden
+  vatId: '',
 
   socials: {
-    instagram: 'https://instagram.com/', // PLACEHOLDER
-    linkedin: 'https://linkedin.com/', // PLACEHOLDER
+    instagram: '',
+    linkedin: '',
   }
 } as const;
 
 export const nav = [
-  { label: 'Warum nyveo?', href: '/#warum-nyveo' },
   { label: 'Leistungen', href: '/#leistungen' },
-  { label: 'Ablauf', href: '/#ablauf' },
-  { label: 'Angebot & Kontakt', href: '/#kontakt' },
+  { label: 'Vorteile', href: '/#vorteile' },
+  { label: 'Galerie', href: '/#galerie' },
+  { label: 'Kontakt & Anfahrt', href: '/#kontakt' },
 ] as const;
