@@ -9,9 +9,12 @@ export const site = {
     'Ihre zuverlässige Änderungsschneiderei in Düsseldorf-Oberkassel. Anpassungen, Reparaturen und Maßanfertigungen von Damen- und Herrenbekleidung.',
   url: 'https://altun-schneiderei.de', // Platzhalter URL
 
-  phone: '0211 46841229',
-  phoneHref: 'tel:021146841229',
+  phone: '0163 8219282',
+  phoneHref: 'tel:01638219282',
   email: 'info@altun-schneiderei.de',
+
+  // Google Business Profile (Öffnungszeiten, Feiertage, Anfahrt).
+  mapsUrl: 'https://maps.app.goo.gl/aRWsfjSnJb85uXTXA',
 
   // Required by § 5 DDG (formerly § 5 TMG).
   address: {
@@ -30,8 +33,3 @@ export const site = {
     linkedin: '',
   }
 } as const;
-
-export const nav = [
-  { label: 'Leistungen', href: '/#leistungen' },
-  { label: 'Kontakt', href: '/#kontakt' },
-] as const;
